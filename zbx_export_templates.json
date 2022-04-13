@@ -1,0 +1,72 @@
+{
+    "zabbix_export": {
+        "version": "5.4",
+        "date": "2022-04-13T22:18:03Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "474fcd7d20564c15abb186a9909a322e",
+                "template": "RabbitMQ",
+                "name": "RabbitMQ",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "uuid": "56c6a87de44f4a2daffe39b718b5f7ff",
+                        "name": "queue [{#QUEUENAME}]",
+                        "type": "TRAP",
+                        "key": "amqp.discovery",
+                        "delay": "0",
+                        "item_prototypes": [
+                            {
+                                "uuid": "43a20bfbf9fb47a4bf98bc12356d941e",
+                                "name": "{#QUEUENAME}",
+                                "type": "TRAP",
+                                "key": "key.[{#QUEUENAME}]",
+                                "delay": "0",
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "c556ca4c4c514ec0aed3009a02dbda4c",
+                                        "expression": "last(/RabbitMQ/key.[{#QUEUENAME}])=10",
+                                        "name": "\u043f\u0440\u0435\u0432\u044b\u0448\u0435\u043d\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439 \u0432 rabbit",
+                                        "priority": "AVERAGE"
+                                    },
+                                    {
+                                        "uuid": "c853f1b816604db6bf1d2a36fbd46e84",
+                                        "expression": "last(/RabbitMQ/key.[{#QUEUENAME}])=100",
+                                        "name": "\u043f\u0440\u0435\u0432\u044b\u0448\u0435\u043d\u043e \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439 \u0432 rabbit",
+                                        "priority": "HIGH"
+                                    }
+                                ]
+                            }
+                        ],
+                        "graph_prototypes": [
+                            {
+                                "uuid": "31185ec684964a2bbb6941c01c97a09a",
+                                "name": "{#QUEUENAME}",
+                                "graph_items": [
+                                    {
+                                        "sortorder": "1",
+                                        "color": "1A7C11",
+                                        "item": {
+                                            "host": "RabbitMQ",
+                                            "key": "key.[{#QUEUENAME}]"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
